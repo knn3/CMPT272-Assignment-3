@@ -8,7 +8,6 @@ interface PigControllerInterface {
 
 export class PigController implements PigControllerInterface {
     pigs: Pigs[];
-
     constructor() {
         this.pigs = [];
     }

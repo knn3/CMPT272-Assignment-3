@@ -11,7 +11,7 @@ System.register(["./Pigs"], function (exports_1, context_1) {
         execute: function () {
             Chestnut = class Chestnut extends Pigs_1.Pigs {
                 constructor(n, b, h, w, s) {
-                    super(n, b, h, w);
+                    super(n, b, h, w, 'Chestnut');
                     this.speak = s;
                 }
             };

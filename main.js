@@ -2,6 +2,19 @@ System.register(["./PigController", "./Grey"], function (exports_1, context_1) {
     "use strict";
     var PigController_1, Grey_1, pigs;
     var __moduleName = context_1 && context_1.id;
+    // list of elements in local storage => for each element, display and delete button to that specific elenment
+    function display() {
+        var arr = pigs.getAll();
+        var dataTable = "";
+        for (let i = 0; i < arr.length; i++) {
+            dataTable += '<tr>';
+            dataTable += '<td>' + arr[i].name;
+            dataTable += '<td>' + arr[i].breed;
+            dataTable += '<td>';
+            dataTable += '<td>';
+            dataTable += '<tr>';
+        }
+    }
     return {
         setters: [
             function (PigController_1_1) {
