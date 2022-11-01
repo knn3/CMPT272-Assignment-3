@@ -17,6 +17,11 @@ System.register(["./PigController", "./Grey"], function (exports_1, context_1) {
                 var pig = new Grey_1.Grey('Newt', 'Yorkshire', 10, 50, 65);
                 pigs.add(pig);
             });
+            document.getElementById('delete').addEventListener(('click'), function (e) {
+                var pig = new Grey_1.Grey('Newt', 'Yorkshire', 10, 50, 65);
+                console.log(pig.id);
+                pigs.delete(pig);
+            });
         }
     };
 });
