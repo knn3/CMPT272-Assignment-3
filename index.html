@@ -10,16 +10,47 @@
 </head>
 
 <body>
-    <button id="create">CREATE</button>
+    <div>
+        <button id="create">CREATE</button>
+        <table>
+            <tr>
+                <td>Name</td>
+                <td><input type="text" id="Name"></td>
+            </tr>
+            <tr>
+                <td>Height</td>
+                <td><input type="number" id="Height"></td>
+            </tr>
+            <tr>
+                <td>Weight</td>
+                <td><input type="number" id="Weight"></td>
+            </tr>
+            <tr>
+                <td>Personality</td>
+                <td><input type="text" id="Personality"></td>
+            </tr>
+            <tr>
+                <td>Category</td>
+                <td>
+                    <select id="Category">
+                        <option value="" disabled selected hidden>Choose one</option>
+                        <option value="Grey">Grey</option>
+                        <option value="Chestnut">Chestnut</option>
+                        <option value="White">White</option>
+                        <option value="Black">Black</option>
+                    </select>   
+                </td>
+            </tr>
+            <tr id="attribute"></tr>
+        </table>
+    </div>
+
+
+
     <button id="get">GET</button>
     <button id="delete">DELETE</button>
 
-    <table>
-        <tr>
-            <td>
-                
-            </td>
-        </tr>
+    <table id="display"> 
     </table>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.19.47/system.js"
