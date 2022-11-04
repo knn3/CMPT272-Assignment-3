@@ -151,7 +151,7 @@ function display() {
         dataTable += '<tr>';
         dataTable += '<td>'+arr[i].name;
         dataTable += '<td>'+arr[i].category;
-        dataTable += '<td>'+'<button>More Info</button>';
+        dataTable += '<td>'+'<button id="more">More Info</button>';
         dataTable += '<td>'+'<button>Delete</button>';
         dataTable += '<tr>';
 
@@ -160,4 +160,21 @@ function display() {
 
 }
 
+function moreInfo(id: number) {
+    var info = pigs.getAll().findIndex(pig => pig.id == id);
+
+    console.log(pigs.getAll()[info]);
+}
+
 display()
+
+// get all the button
+var moreInfoBtn = document.querySelectorAll("button[id=more]");
+var allPigs = pigs.getAll();
+
+// for each button, add event listener with its id as a parameter of moreInfo
+for (let i = 0; i < pigs.getAll().length; i++){
+    moreInfoBtn[i].addEventListener('click', function () {
+        moreInfo(pigs.getAll()[i].id);
+    })
+}

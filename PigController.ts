@@ -4,6 +4,7 @@ interface PigControllerInterface {
     add(p: Pigs): void;
     delete(p: Pigs): void;
     getAll(): Pigs[];
+    // find(id: number): Pigs;
 }
 
 export class PigController implements PigControllerInterface {
@@ -23,4 +24,9 @@ export class PigController implements PigControllerInterface {
     getAll(): Pigs[]{
         return JSON.parse(localStorage.pigsArray);
     }
+
+    // find(id: number): Pigs{
+    //     const index = this.pigs.findIndex(pig => pig.id = id);
+
+    // }
 }
