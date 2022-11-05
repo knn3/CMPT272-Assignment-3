@@ -162,8 +162,7 @@ function display() {
 
 function moreInfo(id: number) {
     var info = pigs.getAll().findIndex(pig => pig.id == id);
-
-    console.log(pigs.getAll()[info]);
+    // console.log(pigs.getAll()[info]);
 }
 
 display()
@@ -175,6 +174,9 @@ var allPigs = pigs.getAll();
 // for each button, add event listener with its id as a parameter of moreInfo
 for (let i = 0; i < pigs.getAll().length; i++){
     moreInfoBtn[i].addEventListener('click', function () {
-        moreInfo(pigs.getAll()[i].id);
+        // moreInfo(pigs.getAll()[i]);
+        // console.log(pigs.getAll()[i].speak);
+
     })
 }
+
