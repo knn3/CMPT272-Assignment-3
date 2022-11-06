@@ -10,8 +10,8 @@ System.register(["./Pigs"], function (exports_1, context_1) {
         ],
         execute: function () {
             Black = class Black extends Pigs_1.Pigs {
-                constructor(n, b, h, w, s) {
-                    super(n, b, h, w, 'Black', s);
+                constructor(n, b, h, w, p, s) {
+                    super(n, b, h, w, 'Black', p, s);
                     this.strength = s;
                 }
             };

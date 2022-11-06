@@ -157,23 +157,19 @@ function display() {
 
     }
     document.getElementById('display')!.innerHTML = dataTable;
+    moreInfoBtn = document.querySelectorAll("button[id=more]")
 
-}
-
-function moreInfo(id: number) {
-    var info = pigs.getAll().findIndex(pig => pig.id == id);
-    // console.log(pigs.getAll()[info]);
 }
 
 display()
 
 // get all the button
 var moreInfoBtn = document.querySelectorAll("button[id=more]");
-var allPigs = pigs.getAll();
 
 // for each button, add event listener with its id as a parameter of moreInfo
 for (let i = 0; i < pigs.getAll().length; i++){
     moreInfoBtn[i].addEventListener('click', function () {
+        console.log("clicked");
         // moreInfo(pigs.getAll()[i]);
         var pig = pigs.getAll()[i];
         document.getElementById('nameDisplay')!.innerHTML = pig.name;
@@ -182,6 +178,22 @@ for (let i = 0; i < pigs.getAll().length; i++){
         document.getElementById('weightDisplay')!.innerHTML = pig.weight.toString();
         document.getElementById('perDisplay')!.innerHTML = pig.personality;
 
+        if (pig.category == 'Grey') {
+            document.getElementById('dynAbility')!.innerHTML = "Swimming";
+            document.getElementById('dynDisplay')!.innerHTML = pig.ability.toString(); 
+        }
+        else if (pig.category == 'Chestnut') {
+            document.getElementById('dynAbility')!.innerHTML = "Language";
+            document.getElementById('dynDisplay')!.innerHTML = pig.ability; 
+        }
+        else if (pig.category == 'White') {
+            document.getElementById('dynAbility')!.innerHTML = "Running";
+            document.getElementById('dynDisplay')!.innerHTML = pig.ability.toString(); 
+        }
+        else if (pig.category == 'Black') {
+            document.getElementById('dynAbility')!.innerHTML = "Strength";
+            document.getElementById('dynDisplay')!.innerHTML = pig.ability.toString(); 
+        }
 
     })
 }
