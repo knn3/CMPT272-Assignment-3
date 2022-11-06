@@ -117,7 +117,6 @@ System.register(["./PigController", "./Grey", "./Chestnut", "./White", "./Black"
                 var weight = document.getElementById('Weight');
                 var category = document.getElementById('Category');
                 var cate = category.options[category.selectedIndex].value;
-                var ability = document.getElementById('attribute');
                 if (cate == 'Grey') {
                     var swimming = document.getElementById('swimming');
                     var breed1 = document.getElementById('Breed1');
@@ -165,7 +164,7 @@ System.register(["./PigController", "./Grey", "./Chestnut", "./White", "./Black"
             for (let i = 0; i < pigs.getAll().length; i++) {
                 moreInfoBtn[i].addEventListener('click', function () {
                     // moreInfo(pigs.getAll()[i]);
-                    console.log(pigs.getAll()[i].speak);
+                    console.log(pigs.getAll()[i].ability);
                 });
             }
         }

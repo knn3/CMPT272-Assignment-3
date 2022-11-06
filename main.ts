@@ -89,14 +89,14 @@ document.getElementById('create')!.addEventListener('click', function () {
     var height = document.getElementById('Height')! as HTMLInputElement;
     var weight = document.getElementById('Weight')! as HTMLInputElement;
     var category = document.getElementById('Category')! as HTMLSelectElement;
+    var personality = document.getElementById('Personality') as HTMLInputElement;
     var cate = category.options[category.selectedIndex].value;
-    var ability = document.getElementById('attribute')! as HTMLInputElement;
 
     if (cate == 'Grey') {
         var swimming = document.getElementById('swimming')! as HTMLInputElement;
         var breed1 = document.getElementById('Breed1')! as HTMLSelectElement;
         var breedVal1 = breed1.options[breed1.selectedIndex].value;
-        var pig1 = new Grey(name.value, breedVal1, parseInt(height.value), parseInt(weight.value), parseInt(swimming.value));
+        var pig1 = new Grey(name.value, breedVal1, parseInt(height.value), parseInt(weight.value), personality.value, parseInt(swimming.value));
         pigs.add(pig1)
         console.log(pig1)
 
@@ -105,7 +105,7 @@ document.getElementById('create')!.addEventListener('click', function () {
         var language = document.getElementById('language')! as HTMLInputElement;
         var breed2 = document.getElementById('Breed2')! as HTMLSelectElement;
         var breedVal2 = breed2.options[breed2.selectedIndex].value;
-        var pig2 = new Chestnut(name.value, breedVal2, parseInt(height.value), parseInt(weight.value), language.value);
+        var pig2 = new Chestnut(name.value, breedVal2, parseInt(height.value), parseInt(weight.value), personality.value, language.value);
         pigs.add(pig2)
         console.log(pig2)
         
@@ -114,7 +114,7 @@ document.getElementById('create')!.addEventListener('click', function () {
         var running = document.getElementById('running')! as HTMLInputElement;
         var breed3 = document.getElementById('Breed3')! as HTMLSelectElement;
         var breedVal3 = breed3.options[breed3.selectedIndex].value;
-        var pig3 = new White(name.value, breedVal3, parseInt(height.value), parseInt(weight.value), parseInt(running.value));
+        var pig3 = new White(name.value, breedVal3, parseInt(height.value), parseInt(weight.value), personality.value, parseInt(running.value));
         pigs.add(pig3)
         console.log(pig3)
 
@@ -124,7 +124,7 @@ document.getElementById('create')!.addEventListener('click', function () {
         var strength = document.getElementById('strength')! as HTMLInputElement;
         var breed4 = document.getElementById('Breed4')! as HTMLSelectElement;
         var breedVal4 = breed4.options[breed4.selectedIndex].value;
-        var pig4 = new Black(name.value, breedVal4, parseInt(height.value), parseInt(weight.value), parseInt(strength.value));
+        var pig4 = new Black(name.value, breedVal4, parseInt(height.value), parseInt(weight.value), personality.value, parseInt(strength.value));
         pigs.add(pig4)
         console.log(pig4)
 
@@ -134,7 +134,7 @@ document.getElementById('create')!.addEventListener('click', function () {
 })
 
 document.getElementById('delete')!.addEventListener(('click'), function (e) {
-    var pig = new Grey('Newt', 'Yorkshire', 10, 50, 65);
+    var pig = new Grey('Newt', 'Yorkshire', 10, 50, 'dsa', 65);
     console.log(pig.id);
 
     pigs.delete(pig);
@@ -175,7 +175,13 @@ var allPigs = pigs.getAll();
 for (let i = 0; i < pigs.getAll().length; i++){
     moreInfoBtn[i].addEventListener('click', function () {
         // moreInfo(pigs.getAll()[i]);
-        // console.log(pigs.getAll()[i].speak);
+        var pig = pigs.getAll()[i];
+        document.getElementById('nameDisplay')!.innerHTML = pig.name;
+        document.getElementById('breedDisplay')!.innerHTML = pig.breed;
+        document.getElementById('heightDisplay')!.innerHTML = pig.height.toString();
+        document.getElementById('weightDisplay')!.innerHTML = pig.weight.toString();
+        document.getElementById('perDisplay')!.innerHTML = pig.personality;
+
 
     })
 }

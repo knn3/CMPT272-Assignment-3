@@ -11,7 +11,7 @@ System.register(["./Pigs"], function (exports_1, context_1) {
         execute: function () {
             White = class White extends Pigs_1.Pigs {
                 constructor(n, b, h, w, r) {
-                    super(n, b, h, w, 'White');
+                    super(n, b, h, w, 'White', r);
                     this.running = r;
                 }
             };
