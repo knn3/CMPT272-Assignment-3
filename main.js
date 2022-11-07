@@ -15,6 +15,35 @@ System.register(["./PigController", "./Grey", "./Chestnut", "./White", "./Black"
             dataTable += '<tr>';
         }
         document.getElementById('display').innerHTML = dataTable;
+        moreInfoBtn = document.querySelectorAll("button[id=more]");
+        for (let i = 0; i < pigs.getAll().length; i++) {
+            moreInfoBtn[i].addEventListener('click', function () {
+                console.log("clicked");
+                // moreInfo(pigs.getAll()[i]);
+                var pig = pigs.getAll()[i];
+                document.getElementById('nameDisplay').innerHTML = pig.name;
+                document.getElementById('breedDisplay').innerHTML = pig.breed;
+                document.getElementById('heightDisplay').innerHTML = pig.height.toString();
+                document.getElementById('weightDisplay').innerHTML = pig.weight.toString();
+                document.getElementById('perDisplay').innerHTML = pig.personality;
+                if (pig.category == 'Grey') {
+                    document.getElementById('dynAbility').innerHTML = "Swimming";
+                    document.getElementById('dynDisplay').innerHTML = pig.ability.toString();
+                }
+                else if (pig.category == 'Chestnut') {
+                    document.getElementById('dynAbility').innerHTML = "Language";
+                    document.getElementById('dynDisplay').innerHTML = pig.ability;
+                }
+                else if (pig.category == 'White') {
+                    document.getElementById('dynAbility').innerHTML = "Running";
+                    document.getElementById('dynDisplay').innerHTML = pig.ability.toString();
+                }
+                else if (pig.category == 'Black') {
+                    document.getElementById('dynAbility').innerHTML = "Strength";
+                    document.getElementById('dynDisplay').innerHTML = pig.ability.toString();
+                }
+            });
+        }
     }
     return {
         setters: [
@@ -108,6 +137,10 @@ System.register(["./PigController", "./Grey", "./Chestnut", "./White", "./Black"
                 document.getElementById('breedSelect').innerHTML = html2;
             });
             document.getElementById('create').addEventListener('click', function () {
+                var allPigs = JSON.parse(localStorage.pigsArray);
+                for (let i = 0; i < allPigs.length; i++) {
+                    pigs.add(allPigs[i]);
+                }
                 var name = document.getElementById('Name');
                 var height = document.getElementById('Height');
                 var weight = document.getElementById('Weight');
@@ -147,7 +180,6 @@ System.register(["./PigController", "./Grey", "./Chestnut", "./White", "./Black"
                     console.log(pig4);
                 }
                 display();
-                moreInfoBtn = document.querySelectorAll("button[id=more]");
             });
             document.getElementById('delete').addEventListener(('click'), function (e) {
                 var pig = new Grey_1.Grey('Newt', 'Yorkshire', 10, 50, 'dsa', 65);
@@ -157,35 +189,6 @@ System.register(["./PigController", "./Grey", "./Chestnut", "./White", "./Black"
             display();
             // get all the button
             moreInfoBtn = document.querySelectorAll("button[id=more]");
-            // for each button, add event listener with its id as a parameter of moreInfo
-            for (let i = 0; i < pigs.getAll().length; i++) {
-                moreInfoBtn[i].addEventListener('click', function () {
-                    console.log("clicked");
-                    // moreInfo(pigs.getAll()[i]);
-                    var pig = pigs.getAll()[i];
-                    document.getElementById('nameDisplay').innerHTML = pig.name;
-                    document.getElementById('breedDisplay').innerHTML = pig.breed;
-                    document.getElementById('heightDisplay').innerHTML = pig.height.toString();
-                    document.getElementById('weightDisplay').innerHTML = pig.weight.toString();
-                    document.getElementById('perDisplay').innerHTML = pig.personality;
-                    if (pig.category == 'Grey') {
-                        document.getElementById('dynAbility').innerHTML = "Swimming";
-                        document.getElementById('dynDisplay').innerHTML = pig.ability.toString();
-                    }
-                    else if (pig.category == 'Chestnut') {
-                        document.getElementById('dynAbility').innerHTML = "Language";
-                        document.getElementById('dynDisplay').innerHTML = pig.ability;
-                    }
-                    else if (pig.category == 'White') {
-                        document.getElementById('dynAbility').innerHTML = "Running";
-                        document.getElementById('dynDisplay').innerHTML = pig.ability.toString();
-                    }
-                    else if (pig.category == 'Black') {
-                        document.getElementById('dynAbility').innerHTML = "Strength";
-                        document.getElementById('dynDisplay').innerHTML = pig.ability.toString();
-                    }
-                });
-            }
         }
     };
 });

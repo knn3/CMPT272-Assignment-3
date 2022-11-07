@@ -85,6 +85,11 @@ select.addEventListener('change', function (e) {
 })
 
 document.getElementById('create')!.addEventListener('click', function () {
+    var allPigs = JSON.parse(localStorage.pigsArray);
+    for (let i = 0; i < allPigs.length; i++){
+        pigs.add(allPigs[i]);
+    }
+
     var name = document.getElementById('Name')! as HTMLInputElement;
     var height = document.getElementById('Height')! as HTMLInputElement;
     var weight = document.getElementById('Weight')! as HTMLInputElement;
@@ -154,20 +159,11 @@ function display() {
         dataTable += '<td>'+'<button id="more">More Info</button>';
         dataTable += '<td>'+'<button>Delete</button>';
         dataTable += '<tr>';
-
     }
     document.getElementById('display')!.innerHTML = dataTable;
-    moreInfoBtn = document.querySelectorAll("button[id=more]")
+    moreInfoBtn = document.querySelectorAll("button[id=more]")!;
 
-}
-
-display()
-
-// get all the button
-var moreInfoBtn = document.querySelectorAll("button[id=more]");
-
-// for each button, add event listener with its id as a parameter of moreInfo
-for (let i = 0; i < pigs.getAll().length; i++){
+    for (let i = 0; i < pigs.getAll().length; i++){
     moreInfoBtn[i].addEventListener('click', function () {
         console.log("clicked");
         // moreInfo(pigs.getAll()[i]);
@@ -197,4 +193,11 @@ for (let i = 0; i < pigs.getAll().length; i++){
 
     })
 }
+}
+
+display();
+// get all the button
+var moreInfoBtn = document.querySelectorAll("button[id=more]")!;
+
+
 
