@@ -1,6 +1,6 @@
 System.register(["./PigController", "./Grey", "./Chestnut", "./White", "./Black"], function (exports_1, context_1) {
     "use strict";
-    var PigController_1, Grey_1, Chestnut_1, White_1, Black_1, pigs, select, moreInfoBtn;
+    var PigController_1, Grey_1, Chestnut_1, White_1, Black_1, pigs, select, moreInfoBtn, deleteBtn;
     var __moduleName = context_1 && context_1.id;
     // list of elements in local storage => for each element, display and delete button to that specific elenment
     function display() {
@@ -11,11 +11,12 @@ System.register(["./PigController", "./Grey", "./Chestnut", "./White", "./Black"
             dataTable += '<td>' + arr[i].name;
             dataTable += '<td>' + arr[i].category;
             dataTable += '<td>' + '<button id="more">More Info</button>';
-            dataTable += '<td>' + '<button>Delete</button>';
+            dataTable += '<td>' + '<button id="delete">Delete</button>';
             dataTable += '<tr>';
         }
         document.getElementById('display').innerHTML = dataTable;
         moreInfoBtn = document.querySelectorAll("button[id=more]");
+        deleteBtn = document.querySelectorAll("button[id=delete]");
         for (let i = 0; i < pigs.getAll().length; i++) {
             moreInfoBtn[i].addEventListener('click', function () {
                 console.log("clicked");
@@ -42,6 +43,12 @@ System.register(["./PigController", "./Grey", "./Chestnut", "./White", "./Black"
                     document.getElementById('dynAbility').innerHTML = "Strength";
                     document.getElementById('dynDisplay').innerHTML = pig.ability.toString();
                 }
+            });
+        }
+        for (let i = 0; i < pigs.getAll().length; i++) {
+            deleteBtn[i].addEventListener('click', function () {
+                pigs.delete(pigs.getAll()[i]);
+                display();
             });
         }
     }
@@ -138,6 +145,7 @@ System.register(["./PigController", "./Grey", "./Chestnut", "./White", "./Black"
             });
             document.getElementById('create').addEventListener('click', function () {
                 var allPigs = JSON.parse(localStorage.pigsArray);
+                pigs = new PigController_1.PigController();
                 for (let i = 0; i < allPigs.length; i++) {
                     pigs.add(allPigs[i]);
                 }
@@ -189,6 +197,7 @@ System.register(["./PigController", "./Grey", "./Chestnut", "./White", "./Black"
             display();
             // get all the button
             moreInfoBtn = document.querySelectorAll("button[id=more]");
+            deleteBtn = document.querySelectorAll("button[id=delete]");
         }
     };
 });

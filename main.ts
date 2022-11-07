@@ -86,9 +86,11 @@ select.addEventListener('change', function (e) {
 
 document.getElementById('create')!.addEventListener('click', function () {
     var allPigs = JSON.parse(localStorage.pigsArray);
+    pigs = new PigController();
     for (let i = 0; i < allPigs.length; i++){
         pigs.add(allPigs[i]);
     }
+
 
     var name = document.getElementById('Name')! as HTMLInputElement;
     var height = document.getElementById('Height')! as HTMLInputElement;
@@ -157,47 +159,57 @@ function display() {
         dataTable += '<td>'+arr[i].name;
         dataTable += '<td>'+arr[i].category;
         dataTable += '<td>'+'<button id="more">More Info</button>';
-        dataTable += '<td>'+'<button>Delete</button>';
+        dataTable += '<td>'+'<button id="delete">Delete</button>';
         dataTable += '<tr>';
     }
     document.getElementById('display')!.innerHTML = dataTable;
     moreInfoBtn = document.querySelectorAll("button[id=more]")!;
+    deleteBtn = document.querySelectorAll("button[id=delete]")!;
 
     for (let i = 0; i < pigs.getAll().length; i++){
-    moreInfoBtn[i].addEventListener('click', function () {
-        console.log("clicked");
-        // moreInfo(pigs.getAll()[i]);
-        var pig = pigs.getAll()[i];
-        document.getElementById('nameDisplay')!.innerHTML = pig.name;
-        document.getElementById('breedDisplay')!.innerHTML = pig.breed;
-        document.getElementById('heightDisplay')!.innerHTML = pig.height.toString();
-        document.getElementById('weightDisplay')!.innerHTML = pig.weight.toString();
-        document.getElementById('perDisplay')!.innerHTML = pig.personality;
+        moreInfoBtn[i].addEventListener('click', function () {
+            console.log("clicked");
+            // moreInfo(pigs.getAll()[i]);
+            var pig = pigs.getAll()[i];
+            document.getElementById('nameDisplay')!.innerHTML = pig.name;
+            document.getElementById('breedDisplay')!.innerHTML = pig.breed;
+            document.getElementById('heightDisplay')!.innerHTML = pig.height.toString();
+            document.getElementById('weightDisplay')!.innerHTML = pig.weight.toString();
+            document.getElementById('perDisplay')!.innerHTML = pig.personality;
 
-        if (pig.category == 'Grey') {
-            document.getElementById('dynAbility')!.innerHTML = "Swimming";
-            document.getElementById('dynDisplay')!.innerHTML = pig.ability.toString(); 
-        }
-        else if (pig.category == 'Chestnut') {
-            document.getElementById('dynAbility')!.innerHTML = "Language";
-            document.getElementById('dynDisplay')!.innerHTML = pig.ability; 
-        }
-        else if (pig.category == 'White') {
-            document.getElementById('dynAbility')!.innerHTML = "Running";
-            document.getElementById('dynDisplay')!.innerHTML = pig.ability.toString(); 
-        }
-        else if (pig.category == 'Black') {
-            document.getElementById('dynAbility')!.innerHTML = "Strength";
-            document.getElementById('dynDisplay')!.innerHTML = pig.ability.toString(); 
-        }
+            if (pig.category == 'Grey') {
+                document.getElementById('dynAbility')!.innerHTML = "Swimming";
+                document.getElementById('dynDisplay')!.innerHTML = pig.ability.toString(); 
+            }
+            else if (pig.category == 'Chestnut') {
+                document.getElementById('dynAbility')!.innerHTML = "Language";
+                document.getElementById('dynDisplay')!.innerHTML = pig.ability; 
+            }
+            else if (pig.category == 'White') {
+                document.getElementById('dynAbility')!.innerHTML = "Running";
+                document.getElementById('dynDisplay')!.innerHTML = pig.ability.toString(); 
+            }
+            else if (pig.category == 'Black') {
+                document.getElementById('dynAbility')!.innerHTML = "Strength";
+                document.getElementById('dynDisplay')!.innerHTML = pig.ability.toString(); 
+            }
 
-    })
-}
+        })
+    }
+    
+    for (let i = 0; i < pigs.getAll().length; i++){
+        deleteBtn[i].addEventListener('click', function () {
+            pigs.delete(pigs.getAll()[i]);
+            display();
+        })
+    }
 }
 
 display();
 // get all the button
 var moreInfoBtn = document.querySelectorAll("button[id=more]")!;
+
+var deleteBtn = document.querySelectorAll("button[id=delete]")!;
 
 
 

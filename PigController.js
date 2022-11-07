@@ -15,7 +15,8 @@ System.register([], function (exports_1, context_1) {
                 }
                 delete(p) {
                     const index = this.pigs.findIndex(pig => pig.id === p.id);
-                    this.pigs.splice(index, 1);
+                    console.log(index);
+                    // this.pigs.splice(index, 1);
                     localStorage.pigsArray = JSON.stringify(this.pigs);
                 }
                 getAll() {
