@@ -29,22 +29,37 @@ export class PigController implements PigControllerInterface {
     group() {
         var allPigs = groupBy(this.pigs, "category");
         this.pigs = [];
-        if (allPigs.Grey)
+        if (allPigs.Grey) {
+            allPigs.Grey.sort(compare);
             for (let i = 0; i < allPigs.Grey.length; i++){
                 this.pigs.push(allPigs.Grey[i]);
             }
-        if (allPigs.Chestnut)
+        }
+            
+        if (allPigs.Chestnut) {
+            allPigs.Chestnut.sort(compare);
+
             for (let i = 0; i < allPigs.Chestnut.length; i++){
                 this.pigs.push(allPigs.Chestnut[i]);
             }
-        if (allPigs.White)
+        }
+            
+        if (allPigs.White) {
+            allPigs.White.sort(compare);
+
             for (let i = 0; i < allPigs.White.length; i++){
                 this.pigs.push(allPigs.White[i]);
             }
-        if (allPigs.Black)
+        }
+            
+        if (allPigs.Black) {
+            allPigs.Black.sort(compare);
+
             for (let i = 0; i < allPigs.Black.length; i++){
                 this.pigs.push(allPigs.Black[i]);
             }
+        }
+            
         localStorage.pigsArray = JSON.stringify(this.pigs);
     }
 
@@ -60,4 +75,14 @@ function groupBy(arr: Pigs[], key: keyof Pigs) {
     }, {} as any);
     
     return grouped;
+}
+
+function compare( a: Pigs, b: Pigs ) {
+  if ( a.name < b.name ){
+    return -1;
+  }
+  if ( a.name > b.name ){
+    return 1;
+  }
+  return 0;
 }

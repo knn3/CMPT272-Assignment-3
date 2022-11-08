@@ -86,12 +86,6 @@ select.addEventListener('change', function (e) {
 })
 
 document.getElementById('create')!.addEventListener('click', function () {
-    // var allPigs = JSON.parse(localStorage.pigsArray);
-    // pigs = new PigController();
-    // for (let i = 0; i < allPigs.length; i++){
-    //     pigs.add(allPigs[i]);
-    // }
-
 
     var name = document.getElementById('Name')! as HTMLInputElement;
     var height = document.getElementById('Height')! as HTMLInputElement;
@@ -135,19 +129,6 @@ document.getElementById('create')!.addEventListener('click', function () {
 
     display();
 
-    // var allPigs = groupBy(pigs.getAll(), "category");
-    // console.log(allPigs);
-    // console.log(typeof allPigs);
-    // console.log(allPigs.Chestnut);
-    // console.log(allPigs.Chestnut[1]);
-
-})
-
-document.getElementById('delete')!.addEventListener(('click'), function (e) {
-    var pig = new Grey('Newt', 'Yorkshire', 10, 50, 'dsa', 65);
-    console.log(pig.id);
-
-    pigs.delete(pig);
 })
 
 // list of elements in local storage => for each element, display and delete button to that specific elenment

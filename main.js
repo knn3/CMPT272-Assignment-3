@@ -144,11 +144,6 @@ System.register(["./PigController", "./Grey", "./Chestnut", "./White", "./Black"
                 document.getElementById('breedSelect').innerHTML = html2;
             });
             document.getElementById('create').addEventListener('click', function () {
-                // var allPigs = JSON.parse(localStorage.pigsArray);
-                // pigs = new PigController();
-                // for (let i = 0; i < allPigs.length; i++){
-                //     pigs.add(allPigs[i]);
-                // }
                 var name = document.getElementById('Name');
                 var height = document.getElementById('Height');
                 var weight = document.getElementById('Weight');
@@ -184,16 +179,6 @@ System.register(["./PigController", "./Grey", "./Chestnut", "./White", "./Black"
                     pigs.add(pig4);
                 }
                 display();
-                // var allPigs = groupBy(pigs.getAll(), "category");
-                // console.log(allPigs);
-                // console.log(typeof allPigs);
-                // console.log(allPigs.Chestnut);
-                // console.log(allPigs.Chestnut[1]);
-            });
-            document.getElementById('delete').addEventListener(('click'), function (e) {
-                var pig = new Grey_1.Grey('Newt', 'Yorkshire', 10, 50, 'dsa', 65);
-                console.log(pig.id);
-                pigs.delete(pig);
             });
             display();
             // get all the button
