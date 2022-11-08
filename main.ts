@@ -85,11 +85,11 @@ select.addEventListener('change', function (e) {
 })
 
 document.getElementById('create')!.addEventListener('click', function () {
-    var allPigs = JSON.parse(localStorage.pigsArray);
-    pigs = new PigController();
-    for (let i = 0; i < allPigs.length; i++){
-        pigs.add(allPigs[i]);
-    }
+    // var allPigs = JSON.parse(localStorage.pigsArray);
+    // pigs = new PigController();
+    // for (let i = 0; i < allPigs.length; i++){
+    //     pigs.add(allPigs[i]);
+    // }
 
 
     var name = document.getElementById('Name')! as HTMLInputElement;
@@ -197,7 +197,7 @@ function display() {
         })
     }
     
-    for (let i = 0; i < pigs.getAll().length; i++){
+    for (let i = 0; i < deleteBtn.length; i++){
         deleteBtn[i].addEventListener('click', function () {
             pigs.delete(pigs.getAll()[i]);
             display();

@@ -19,7 +19,7 @@ export class PigController implements PigControllerInterface {
     delete(p: Pigs): void {
         const index = this.pigs.findIndex(pig => pig.id === p.id);
         console.log(index);
-        // this.pigs.splice(index, 1);
+        this.pigs.splice(index, 1);
         localStorage.pigsArray = JSON.stringify(this.pigs);
     }
     getAll(): Pigs[]{
