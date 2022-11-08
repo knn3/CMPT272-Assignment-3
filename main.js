@@ -4,7 +4,9 @@ System.register(["./PigController", "./Grey", "./Chestnut", "./White", "./Black"
     var __moduleName = context_1 && context_1.id;
     // list of elements in local storage => for each element, display and delete button to that specific elenment
     function display() {
+        pigs.group();
         var arr = pigs.getAll();
+        // var allPigs = groupBy(pigs.getAll(), "category");
         var dataTable = "<tr><td>Name</td><td>Category</td><td></td><td></td></tr>";
         for (let i = 0; i < arr.length; i++) {
             dataTable += '<tr>';
@@ -19,8 +21,6 @@ System.register(["./PigController", "./Grey", "./Chestnut", "./White", "./Black"
         deleteBtn = document.querySelectorAll("button[id=delete]");
         for (let i = 0; i < pigs.getAll().length; i++) {
             moreInfoBtn[i].addEventListener('click', function () {
-                console.log("clicked");
-                // moreInfo(pigs.getAll()[i]);
                 var pig = pigs.getAll()[i];
                 document.getElementById('nameDisplay').innerHTML = pig.name;
                 document.getElementById('breedDisplay').innerHTML = pig.breed;
@@ -161,7 +161,6 @@ System.register(["./PigController", "./Grey", "./Chestnut", "./White", "./Black"
                     var breedVal1 = breed1.options[breed1.selectedIndex].value;
                     var pig1 = new Grey_1.Grey(name.value, breedVal1, parseInt(height.value), parseInt(weight.value), personality.value, parseInt(swimming.value));
                     pigs.add(pig1);
-                    console.log(pig1);
                 }
                 else if (cate == 'Chestnut') {
                     var language = document.getElementById('language');
@@ -169,7 +168,6 @@ System.register(["./PigController", "./Grey", "./Chestnut", "./White", "./Black"
                     var breedVal2 = breed2.options[breed2.selectedIndex].value;
                     var pig2 = new Chestnut_1.Chestnut(name.value, breedVal2, parseInt(height.value), parseInt(weight.value), personality.value, language.value);
                     pigs.add(pig2);
-                    console.log(pig2);
                 }
                 else if (cate == 'White') {
                     var running = document.getElementById('running');
@@ -177,7 +175,6 @@ System.register(["./PigController", "./Grey", "./Chestnut", "./White", "./Black"
                     var breedVal3 = breed3.options[breed3.selectedIndex].value;
                     var pig3 = new White_1.White(name.value, breedVal3, parseInt(height.value), parseInt(weight.value), personality.value, parseInt(running.value));
                     pigs.add(pig3);
-                    console.log(pig3);
                 }
                 else if (cate == 'Black') {
                     var strength = document.getElementById('strength');
@@ -185,9 +182,13 @@ System.register(["./PigController", "./Grey", "./Chestnut", "./White", "./Black"
                     var breedVal4 = breed4.options[breed4.selectedIndex].value;
                     var pig4 = new Black_1.Black(name.value, breedVal4, parseInt(height.value), parseInt(weight.value), personality.value, parseInt(strength.value));
                     pigs.add(pig4);
-                    console.log(pig4);
                 }
                 display();
+                // var allPigs = groupBy(pigs.getAll(), "category");
+                // console.log(allPigs);
+                // console.log(typeof allPigs);
+                // console.log(allPigs.Chestnut);
+                // console.log(allPigs.Chestnut[1]);
             });
             document.getElementById('delete').addEventListener(('click'), function (e) {
                 var pig = new Grey_1.Grey('Newt', 'Yorkshire', 10, 50, 'dsa', 65);

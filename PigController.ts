@@ -4,6 +4,7 @@ interface PigControllerInterface {
     add(p: Pigs): void;
     delete(p: Pigs): void;
     getAll(): Pigs[];
+    group(): void;
     // find(id: number): Pigs;
 }
 
@@ -25,9 +26,38 @@ export class PigController implements PigControllerInterface {
     getAll(): Pigs[]{
         return JSON.parse(localStorage.pigsArray);
     }
+    group() {
+        var allPigs = groupBy(this.pigs, "category");
+        this.pigs = [];
+        if (allPigs.Grey)
+            for (let i = 0; i < allPigs.Grey.length; i++){
+                this.pigs.push(allPigs.Grey[i]);
+            }
+        if (allPigs.Chestnut)
+            for (let i = 0; i < allPigs.Chestnut.length; i++){
+                this.pigs.push(allPigs.Chestnut[i]);
+            }
+        if (allPigs.White)
+            for (let i = 0; i < allPigs.White.length; i++){
+                this.pigs.push(allPigs.White[i]);
+            }
+        if (allPigs.Black)
+            for (let i = 0; i < allPigs.Black.length; i++){
+                this.pigs.push(allPigs.Black[i]);
+            }
+        localStorage.pigsArray = JSON.stringify(this.pigs);
+    }
 
-    // find(id: number): Pigs{
-    //     const index = this.pigs.findIndex(pig => pig.id = id);
+}
 
-    // }
+function groupBy(arr: Pigs[], key: keyof Pigs) {
+    var grouped = arr.reduce((previous, current) => {
+        if(!previous[current[key]]){
+            previous[current[key]] = [] as Pigs[];
+        }
+        previous[current[key]].push(current);
+          return previous;
+    }, {} as any);
+    
+    return grouped;
 }

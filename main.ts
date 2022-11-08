@@ -3,6 +3,7 @@ import { Grey } from "./Grey";
 import { Chestnut } from "./Chestnut";
 import { White } from "./White";
 import { Black } from "./Black";
+import { Pigs } from "./Pigs";
 
 var pigs = new PigController();
 var select = document.getElementById('Category')! as HTMLSelectElement;
@@ -105,7 +106,6 @@ document.getElementById('create')!.addEventListener('click', function () {
         var breedVal1 = breed1.options[breed1.selectedIndex].value;
         var pig1 = new Grey(name.value, breedVal1, parseInt(height.value), parseInt(weight.value), personality.value, parseInt(swimming.value));
         pigs.add(pig1)
-        console.log(pig1)
 
     }
     else if (cate == 'Chestnut') {
@@ -114,7 +114,6 @@ document.getElementById('create')!.addEventListener('click', function () {
         var breedVal2 = breed2.options[breed2.selectedIndex].value;
         var pig2 = new Chestnut(name.value, breedVal2, parseInt(height.value), parseInt(weight.value), personality.value, language.value);
         pigs.add(pig2)
-        console.log(pig2)
         
     }
     else if (cate == 'White') {
@@ -123,8 +122,6 @@ document.getElementById('create')!.addEventListener('click', function () {
         var breedVal3 = breed3.options[breed3.selectedIndex].value;
         var pig3 = new White(name.value, breedVal3, parseInt(height.value), parseInt(weight.value), personality.value, parseInt(running.value));
         pigs.add(pig3)
-        console.log(pig3)
-
         
     }
     else if (cate == 'Black') {
@@ -133,11 +130,17 @@ document.getElementById('create')!.addEventListener('click', function () {
         var breedVal4 = breed4.options[breed4.selectedIndex].value;
         var pig4 = new Black(name.value, breedVal4, parseInt(height.value), parseInt(weight.value), personality.value, parseInt(strength.value));
         pigs.add(pig4)
-        console.log(pig4)
 
     }
 
     display();
+
+    // var allPigs = groupBy(pigs.getAll(), "category");
+    // console.log(allPigs);
+    // console.log(typeof allPigs);
+    // console.log(allPigs.Chestnut);
+    // console.log(allPigs.Chestnut[1]);
+
 })
 
 document.getElementById('delete')!.addEventListener(('click'), function (e) {
@@ -150,7 +153,9 @@ document.getElementById('delete')!.addEventListener(('click'), function (e) {
 // list of elements in local storage => for each element, display and delete button to that specific elenment
 
 function display() {
+    pigs.group();
     var arr = pigs.getAll();
+    // var allPigs = groupBy(pigs.getAll(), "category");
 
     var dataTable = "<tr><td>Name</td><td>Category</td><td></td><td></td></tr>";
 
@@ -168,8 +173,6 @@ function display() {
 
     for (let i = 0; i < pigs.getAll().length; i++){
         moreInfoBtn[i].addEventListener('click', function () {
-            console.log("clicked");
-            // moreInfo(pigs.getAll()[i]);
             var pig = pigs.getAll()[i];
             document.getElementById('nameDisplay')!.innerHTML = pig.name;
             document.getElementById('breedDisplay')!.innerHTML = pig.breed;
@@ -210,6 +213,7 @@ display();
 var moreInfoBtn = document.querySelectorAll("button[id=more]")!;
 
 var deleteBtn = document.querySelectorAll("button[id=delete]")!;
+
 
 
 
