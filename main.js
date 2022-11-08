@@ -47,6 +47,7 @@ System.register(["./PigController", "./Grey", "./Chestnut", "./White", "./Black"
         }
         for (let i = 0; i < deleteBtn.length; i++) {
             deleteBtn[i].addEventListener('click', function () {
+                window.alert("Confirm your deletion?");
                 pigs.delete(pigs.getAll()[i]);
                 display();
             });
