@@ -18,7 +18,7 @@ select.addEventListener('change', function (e) {
     var value = opt.value;
 
     if (value == 'Grey') {
-        html += "<td>Swimming</td><td><input type='number' id='swimming'></td>"
+        html += "<td>Swimming</td><td><input type='number' value='0' id='swimming'></td>"
         html2 += `
             <td>Breed</td>
             <td>
@@ -49,7 +49,7 @@ select.addEventListener('change', function (e) {
         `;
     }
     else if (value == 'White') {
-        html += "<tr><td>Running</td><td><input type='number' id='running'></td></tr>"
+        html += "<tr><td>Running</td><td><input type='number' value='0' id='running'></td></tr>"
         html2 += `
             <td>Breed</td>
             <td>
@@ -64,7 +64,7 @@ select.addEventListener('change', function (e) {
         `;
     }
     else if (value == 'Black') {
-        html += "<td>Strength</td><td><input type='number' id='strength'></td>"
+        html += "<td>Strength</td><td><input type='number' value='0' id='strength'></td>"
         html2 += `
             <td>Breed</td>
             <td>
@@ -94,69 +94,70 @@ document.getElementById('create')!.addEventListener('click', function () {
     var personality = document.getElementById('Personality') as HTMLInputElement;
     var cate = category.options[category.selectedIndex].value;
 
-    if (name.value == "" || height.value == null || weight.value == null || personality.value == "") {
+    if (name.value == "" || height.value == null || weight.value == null || personality.value == "" || cate == "") {
         window.alert("Invalid input! Make sure to enter all the fields!");
     }
+    else {
+        if (cate == 'Grey') {
+            var swimming = document.getElementById('swimming')! as HTMLInputElement;
+            var breed1 = document.getElementById('Breed1')! as HTMLSelectElement;
+            var breedVal1 = breed1.options[breed1.selectedIndex].value;
+            var pig1 = new Grey(name.value, breedVal1, parseInt(height.value), parseInt(weight.value), personality.value, parseInt(swimming.value));
+            
+            if (breedVal1 == "") {
+                window.alert("Invalid input! Please enter a breed");
+            }
+            else if (parseInt(swimming.value) < 1 || parseInt(swimming.value) > 100)
+                window.alert("Invalid input! Please enter swimming ability between 1 and 100");
+            else {
+                pigs.add(pig1);
+            }
 
-    else if (cate == 'Grey') {
-        var swimming = document.getElementById('swimming')! as HTMLInputElement;
-        var breed1 = document.getElementById('Breed1')! as HTMLSelectElement;
-        var breedVal1 = breed1.options[breed1.selectedIndex].value;
-        var pig1 = new Grey(name.value, breedVal1, parseInt(height.value), parseInt(weight.value), personality.value, parseInt(swimming.value));
+        }
+        else if (cate == 'Chestnut') {
+            var language = document.getElementById('language')! as HTMLInputElement;
+            var breed2 = document.getElementById('Breed2')! as HTMLSelectElement;
+            var breedVal2 = breed2.options[breed2.selectedIndex].value;
+            var pig2 = new Chestnut(name.value, breedVal2, parseInt(height.value), parseInt(weight.value), personality.value, language.value);
+            if (breedVal2 == "") {
+                window.alert("Invalid input! Please enter a breed");
+            }
+            else if (language.value.match(/\d+/g) || language.value == "")
+                window.alert("Invalid input! Please enter a language");
+            else {
+                pigs.add(pig2);
+            }
         
-        if (breedVal1 == "") {
-            window.alert("Invalid input! Please enter a breed");
         }
-        else if (parseInt(swimming.value) < 0 || parseInt(swimming.value) > 100 || swimming.value == null)
-            window.alert("Invalid input! Please enter swimming ability between 0 and 100");
-        else {
-            pigs.add(pig1);
-        }
-
-    }
-    else if (cate == 'Chestnut') {
-        var language = document.getElementById('language')! as HTMLInputElement;
-        var breed2 = document.getElementById('Breed2')! as HTMLSelectElement;
-        var breedVal2 = breed2.options[breed2.selectedIndex].value;
-        var pig2 = new Chestnut(name.value, breedVal2, parseInt(height.value), parseInt(weight.value), personality.value, language.value);
-        if (breedVal2 == "") {
-            window.alert("Invalid input! Please enter a breed");
-        }
-        else if (language.value.match(/\d+/g) || language.value == "")
-            window.alert("Invalid input! Please enter a language");
-        else {
-            pigs.add(pig2);
-        }
+        else if (cate == 'White') {
+            var running = document.getElementById('running')! as HTMLInputElement;
+            var breed3 = document.getElementById('Breed3')! as HTMLSelectElement;
+            var breedVal3 = breed3.options[breed3.selectedIndex].value;
+            var pig3 = new White(name.value, breedVal3, parseInt(height.value), parseInt(weight.value), personality.value, parseInt(running.value));
+            pigs.add(pig3)
+            if (breedVal3 == "") {
+                window.alert("Invalid input! Please enter a breed");
+            }
+            else if (parseInt(running.value) < 1 || parseInt(running.value) > 100)
+                window.alert("Invalid input! Please enter running ability between 1 and 100");
+            else {
+                pigs.add(pig3);
+            }
         
-    }
-    else if (cate == 'White') {
-        var running = document.getElementById('running')! as HTMLInputElement;
-        var breed3 = document.getElementById('Breed3')! as HTMLSelectElement;
-        var breedVal3 = breed3.options[breed3.selectedIndex].value;
-        var pig3 = new White(name.value, breedVal3, parseInt(height.value), parseInt(weight.value), personality.value, parseInt(running.value));
-        pigs.add(pig3)
-        if (breedVal3 == "") {
-            window.alert("Invalid input! Please enter a breed");
         }
-        else if (parseInt(running.value) < 0 || parseInt(running.value) > 100 || running.value == null)
-            window.alert("Invalid input! Please enter running ability between 0 and 100");
-        else {
-            pigs.add(pig3);
-        }
-        
-    }
-    else if (cate == 'Black') {
-        var strength = document.getElementById('strength')! as HTMLInputElement;
-        var breed4 = document.getElementById('Breed4')! as HTMLSelectElement;
-        var breedVal4 = breed4.options[breed4.selectedIndex].value;
-        var pig4 = new Black(name.value, breedVal4, parseInt(height.value), parseInt(weight.value), personality.value, parseInt(strength.value));
-        if (breedVal4 == "") {
-            window.alert("Invalid input! Please enter a breed");
-        }
-        else if (parseInt(strength.value) < 1 || parseInt(strength.value) > 10 || strength.value == null)
-            window.alert("Invalid input! Please enter strength between 1 and 10");
-        else {
-            pigs.add(pig4);
+        else if (cate == 'Black') {
+            var strength = document.getElementById('strength')! as HTMLInputElement;
+            var breed4 = document.getElementById('Breed4')! as HTMLSelectElement;
+            var breedVal4 = breed4.options[breed4.selectedIndex].value;
+            var pig4 = new Black(name.value, breedVal4, parseInt(height.value), parseInt(weight.value), personality.value, parseInt(strength.value));
+            if (breedVal4 == "") {
+                window.alert("Invalid input! Please enter a breed");
+            }
+            else if (parseInt(strength.value) < 1 || parseInt(strength.value) > 10 || strength.value == null)
+                window.alert("Invalid input! Please enter strength between 1 and 10");
+            else {
+                pigs.add(pig4);
+            }
         }
     }
 
